@@ -10,7 +10,8 @@ pipeline {
 
         stage('Build Image') {
             steps {
-                container('docker'){
+                container('docker') {
+                    
                     sh '''
                     env && docker build -t ${FRONTEND_IMAGE_NAME}:${GIT_COMMIT} .
                     '''
