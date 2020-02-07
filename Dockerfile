@@ -1,7 +1,8 @@
 FROM tiangolo/node-frontend:10 as build-stage
-WORKDIR /usr/src/app
-COPY package*.json ./
+WORKDIR /app
+COPY package*.json /app/
 RUN npm install
-COPY . .
+COPY ./ /app/
+RUN npm install
 EXPOSE 8080
 CMD [ "node", "server.js" ]
