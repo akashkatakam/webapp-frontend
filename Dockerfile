@@ -4,9 +4,11 @@ FROM node:10
 
 WORKDIR /app
 
-COPY . .
+COPY package*.json ./
 
-RUN npm --verbose install 
+RUN npm install
+
+COPY ./ /app/
 
 EXPOSE 3000
 
