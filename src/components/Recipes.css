@@ -1,0 +1,18 @@
+.card{
+    min-width: 345px;
+    margin-bottom: 5%;
+}
+
+.recipecard{
+    max-width: 400px;
+    margin-bottom: 5%;
+}
+
+.media{
+    height: 140px;
+}
+
+.expand{
+    transform: 'rotate(0deg)';
+    margin-left: 'auto';
+}
