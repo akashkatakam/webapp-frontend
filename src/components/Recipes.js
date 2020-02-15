@@ -20,7 +20,7 @@ export default class Recipes extends Component {
   }
 
   componentDidMount(){  
-    axios.get(process.env.REACT_APP_BACKEND_URL+"/v1/allrecipes")
+    axios.get("http://localhost:8080/v1/allrecipes")
       .then((response) => {
         this.setState({recipes: response.data,
                        selectedIndex: 0 
