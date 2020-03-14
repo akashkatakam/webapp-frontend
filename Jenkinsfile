@@ -7,7 +7,7 @@ node{
 
 	stage('Git Clone') {
 		checkout scm
-			dir('../helm-charts'){
+			dir('helm-charts'){
 			   git branch: "${env.git_branch}" , credentialsId: 'github-credentials' , url: "${env.HELM_URL}"
 			 }
 	}
@@ -34,8 +34,8 @@ node{
 			def scope = "${env.increment_type}"
 			version = nextVersionFromGit(scope)
 
-			sh "yq write -i ../helm-charts/helm-frontend/Chart.yaml version ${version}"
-			sh "yq write -i ../helm-charts/helm-frontend/values.yaml frontend_image ${DOCKER_USER}/webapp-frontend:$commit_id"
+			sh "yq write -i helm-charts/helm-frontend/Chart.yaml version ${version}"
+			sh "yq write -i helm-charts/helm-frontend/values.yaml frontend_image ${DOCKER_USER}/webapp-frontend:$commit_id"
 			pushToGit("${env.git_branch}")
 
 	}
@@ -64,8 +64,7 @@ def nextVersionFromGit(scope) {
 
 def pushToGit(branch) {
 	def git_branch =  branch
-		dir("../helm-charts"){
-		sh "cd ../helm-charts"
+		dir("helm-charts"){
 		sh "git config --global user.name ${DOCKER_USER}"
 		sh	"sudo git commit -am 'version upgrade to ${version} by jenkins'"
 		sh	"git push origin ${git_branch}"
